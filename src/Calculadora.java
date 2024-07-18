@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Calculadora {
 
@@ -13,8 +12,23 @@ public class Calculadora {
 
     public double mediana(double[] valores){
 
-        Arrays.sort(valores);
         int n = valores.length;
+        boolean trocou;
+
+        // ORGANIZA O ARRAY EM ORDEM CRESCENTE
+        do {
+            trocou = false;
+            for (int i = 1; i < n; i++) {
+                if (valores[i - 1] > valores[i]) {
+                    double temp = valores[i - 1];
+                    valores[i - 1] = valores[i];
+                    valores[i] = temp;
+                    trocou = true;
+                }
+            }
+        } while (trocou);
+
+        // CONFERE SE O NÚMERO DE ITENS NO ARRAY É IMPAR OU PAR E FINALIZA O CÁLCULO
         if (n % 2 == 1) {
             return valores[n / 2];
         } else {
